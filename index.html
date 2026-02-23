@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-theme="purple">
+
+  <header class="header">
+    <h1 class="logo">Universal Store</h1>
+
+    <nav class="nav">
+      <a class="nav__link" href="#home">Home</a>
+      <a class="nav__link" href="#catalog">Catalog</a>
+      <a class="nav__link" href="#favorites">Favorites</a>
+      <a class="nav__link" href="#cart">Cart</a>
+      <a class="nav__link" href="#orders">Orders</a>
+      <a class="nav__link" href="#profile">Profile</a>
+    </nav>
+
+    <div class="right">
+      <div id="authbar"></div>
+
+      <div class="theme-switcher">
+        <button class="btn small" type="button">💜</button>
+        <button class="btn small" type="button">🌙</button>
+        <button class="btn small" type="button">🔥</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HOME -->
+    <section class="view" data-view="home">
+      <h2>Главная</h2>
+      <p class="muted">Добро пожаловать в Universal Store.</p>
+      <a class="btn" href="#catalog">Перейти в каталог</a>
+    </section>
+
+    <!-- CATALOG (важно: id="catalog") -->
+    <section class="view" data-view="catalog" id="catalog"></section>
+
+    <!-- PRODUCT (важно: id="product") -->
+    <section class="view" data-view="product" id="product"></section>
+
+    <!-- FAVORITES (важно: id="favorites") -->
+    <section class="view" data-view="favorites" id="favorites"></section>
+
+    <!-- CART (важно: id="cart") -->
+    <section class="view" data-view="cart" id="cart"></section>
+
+    <!-- ORDERS (важно: id="orders") -->
+    <section class="view" data-view="orders" id="orders"></section>
+
+    <!-- LOGIN -->
+    <section class="view" data-view="login">
+      <div class="auth">
+        <div class="auth__card">
+          <h2 class="auth__title">Вход</h2>
+
+          <label class="auth__label">Email</label>
+          <input class="auth__input" id="loginEmail" type="email" placeholder="name@example.com" />
+
+          <label class="auth__label">Пароль</label>
+          <input class="auth__input" id="loginPassword" type="password" placeholder="••••••••" />
+
+          <button class="btn auth__btn" id="loginBtn" type="button">Войти</button>
+
+          <p class="auth__muted">
+            Нет аккаунта? <a class="auth__link" href="#register">Зарегистрироваться</a>
+          </p>
+
+          <p class="auth__error" id="loginError"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER -->
+    <section class="view" data-view="register">
+      <div class="auth">
+        <div class="auth__card">
+          <h2 class="auth__title">Регистрация</h2>
+
+          <label class="auth__label">Имя</label>
+          <input class="auth__input" id="regName" type="text" placeholder="Например: Adai" />
+
+          <label class="auth__label">Email</label>
+          <input class="auth__input" id="regEmail" type="email" placeholder="name@example.com" />
+
+          <label class="auth__label">Пароль (минимум 6 символов)</label>
+          <input class="auth__input" id="regPassword" type="password" placeholder="••••••••" />
+
+          <button class="btn auth__btn" id="regBtn" type="button">Создать аккаунт</button>
+
+          <p class="auth__muted">
+            Уже есть аккаунт? <a class="auth__link" href="#login">Войти</a>
+          </p>
+
+          <p class="auth__error" id="regError"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="view" data-view="profile">
+      <div class="auth">
+        <div class="auth__card">
+          <h2 class="auth__title">Профиль</h2>
+
+          <div class="profileLine">
+            <span class="muted">Имя:</span>
+            <strong id="profileName">—</strong>
+          </div>
+
+          <div class="profileLine">
+            <span class="muted">Email:</span>
+            <strong id="profileEmail">—</strong>
+          </div>
+
+          <button class="btn outline auth__btn" id="logoutBtn" type="button">Выйти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="view" data-view="settings">
+      <h2>Settings</h2>
+      <p class="muted">Настройки будут позже.</p>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>Готово ✅</h2>
+      <p class="muted">Действие выполнено.</p>
+      <button class="btn" type="button" onclick="closeModal()">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
