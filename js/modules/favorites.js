@@ -25,7 +25,6 @@ export function renderFavorites() {
 
   const favIds = getFav();
 
-  // ✅ Empty state
   if (favIds.length === 0) {
     root.innerHTML = `
       <div class="empty">
