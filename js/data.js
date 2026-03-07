@@ -56,7 +56,7 @@ export const PRODUCTS = [
   {
     id: 7,
     title: "Корпус для ПК",
-    price: 300,
+    price: 30000,
     image: "img/frame.jpg",
     category: "gadgets",
     rating: 4.1,

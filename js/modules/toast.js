@@ -1,5 +1,6 @@
 export function toast(msg) {
   let box = document.getElementById("toastBox");
+
   if (!box) {
     box = document.createElement("div");
     box.id = "toastBox";
@@ -12,10 +13,10 @@ export function toast(msg) {
   t.textContent = msg;
   box.appendChild(t);
 
-  requestAnimationFrame(() => t.classList.add("toast--show"));
+  setTimeout(() => t.classList.add("toast--show"), 10);
 
   setTimeout(() => {
     t.classList.remove("toast--show");
-    setTimeout(() => t.remove(), 250);
-  }, 2200);
+    setTimeout(() => t.remove(), 300);
+  }, 2000);
 }

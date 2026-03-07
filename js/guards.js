@@ -1,16 +1,33 @@
-export function isAuthed() {
+function hasSession() {
   try {
-    const s = JSON.parse(localStorage.getItem("sf_session") || "null");
-    return !!(s && s.userId);
-  } catch { return false; }
+    const s = JSON.parse(localStorage.getItem("sf_session"));
+    return !!s?.userId;
+  } catch {
+    return false;
+  }
 }
 
-export function applyGuards(path) {
-  const protectedRoutes = new Set(["profile", "orders"]);
-  const authRoutes = new Set(["login", "register"]);
-  const authed = isAuthed();
+// Какие страницы закрытые (нужна авторизация)
+const PROTECTED = new Set([
+  "profile",
+  "orders",
+  "order",
+  "favorites",
+  "cart",
+  "settings",
+]);
 
-  if (!authed && protectedRoutes.has(path)) return "login";
-  if (authed && authRoutes.has(path)) return "home";
-  return path;
+export function checkGuard(routeName) {
+  // если страница не защищена, все ок
+  if (!PROTECTED.has(routeName)) return true;
+
+  // если авторизован, все ок
+  if (hasSession()) return true;
+
+  // запоминаем куда хотел зайти
+  localStorage.setItem("sf_redirect_after_login", location.hash || "#home");
+
+  // кидаем на логин
+  location.hash = "#login";
+  return false;
 }

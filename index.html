@@ -11,7 +11,13 @@
 
   <header class="header">
     <h1 class="logo">Universal Store</h1>
+    <a href="#cart">
+      🛒 <span id="cart-count">0</span>
+    </a>
 
+    <a href="#favorites">
+      ❤️ <span id="fav-count">0</span>
+    </a>
     <nav class="nav">
       <a class="nav__link" href="#home">Home</a>
       <a class="nav__link" href="#catalog">Catalog</a>
@@ -40,6 +46,8 @@
       <a class="btn" href="#catalog">Перейти в каталог</a>
     </section>
 
+    <section class="view" data-view="order" id="order"></section>
+    
     <section class="view" data-view="catalog" id="catalog"></section>
 
     <section class="view" data-view="product" id="product"></section>
@@ -97,10 +105,9 @@
       </div>
     </section>
 
-    <section class="view" data-view="profile">
-      <div class="auth">
-        <div class="auth__card">
-          <h2 class="auth__title">Профиль</h2>
+    <section class="view" data-view="profile" id="profile">
+            <h2>Мой профиль</h2>
+          <div id="profileCard" class="card"></div>
 
           <div class="profileLine">
             <span class="muted">Имя:</span>
@@ -133,7 +140,7 @@
   </div>
 
   <script src="js/script.js"></script>
-  <script src="js/auth.js"></script>
+  <script src="js/modules/auth.js"></script>
   <script type="module" src="js/main.js"></script>
 
 </body>

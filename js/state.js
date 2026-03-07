@@ -18,3 +18,5 @@ export function subscribe(fn) {
   subs.add(fn);
   return () => subs.delete(fn);
 }
+export const getCartCount = () => state.cart.length
+export const getFavCount = () => state.favorites.length

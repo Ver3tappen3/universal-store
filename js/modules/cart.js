@@ -1,5 +1,7 @@
 import { PRODUCTS } from "../data.js";
 import { createOrder } from "./orders.js";
+import { updateHeaderBadges } from "../ui.js";
+import { toast } from "./toast.js";
 
 function getCart() {
   try {
@@ -11,12 +13,14 @@ function getCart() {
 
 function setCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
+  updateHeaderBadges();
 }
 
 export function addToCart(id) {
   const cart = getCart();
   cart[id] = (cart[id] || 0) + 1;
   setCart(cart);
+  toast("Добавлено в корзину");
 }
 
 export function renderCart() {
@@ -24,7 +28,7 @@ export function renderCart() {
   if (!root) return;
 
   const cart = getCart();
-  const entries = Object.entries(cart); 
+  const entries = Object.entries(cart);
 
   if (entries.length === 0) {
     root.innerHTML = `
@@ -68,12 +72,10 @@ export function renderCart() {
     <button class="btn" id="checkoutBtn" type="button">Оформить заказ</button>
   `;
 
-  const btn = document.getElementById("checkoutBtn");
-  btn?.addEventListener("click", () => {
-    createOrder({ items, total });
-
+  document.getElementById("checkoutBtn")?.addEventListener("click", () => {
+    createOrder({ items, total })
     localStorage.removeItem("cart");
-
+    updateHeaderBadges();
     location.hash = "#orders";
   });
 }

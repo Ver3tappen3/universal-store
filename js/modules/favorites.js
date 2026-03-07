@@ -1,4 +1,6 @@
 import { PRODUCTS } from "../data.js";
+import { updateHeaderBadges } from "../ui.js";
+import { toast } from "./toast.js";
 
 function getFav() {
   try {
@@ -10,6 +12,7 @@ function getFav() {
 
 function setFav(arr) {
   localStorage.setItem("sf_favorites", JSON.stringify(arr));
+  updateHeaderBadges();
 }
 
 export function toggleFavorite(id) {
@@ -17,6 +20,8 @@ export function toggleFavorite(id) {
   const exists = fav.includes(id);
   const next = exists ? fav.filter(x => x !== id) : [...fav, id];
   setFav(next);
+
+  toast(exists ? "Удалено из избранного" : "Добавлено в избранное");
 }
 
 export function renderFavorites() {
