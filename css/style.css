@@ -392,25 +392,67 @@ body[data-theme="alt"] .status.done { background: #e8f5e9; color: #1b5e20; }
   }
 }
 
-@media (max-width: 480px) {
-  .header {
-    padding: 10px 3%;
-  }
+@media(max-width:700px){
 
-  .nav {
-    gap: 12px;
-    font-size: 0.85em;
-  }
-
-  .theme-switcher button {
-    padding: 6px 8px;
-    font-size: 0.9em;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
+.nav{
+  justify-content:center;
+  width:100%;
 }
+
+.header{
+  gap:10px;
+}
+
+.right{
+  margin-left:auto;
+}
+
+}
+
+#authbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  font-size: 0.9em;
+}
+
+#authbar span {
+  color: var(--text);
+  opacity: 0.85;
+}
+
+#authbar button {
+  padding: 6px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+#authbar button:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+#cart-count,
+#fav-count{
+  background:var(--primary);
+  color:white;
+  padding:2px 6px;
+  border-radius:12px;
+  font-size:12px;
+  margin-left:4px;
+}
+
+
 
 
 .view { display:none; }
@@ -434,46 +476,4 @@ body[data-theme="alt"] .status.done { background: #e8f5e9; color: #1b5e20; }
 .empty p{
   margin: 0 0 14px;
   color: var(--muted);
-}
-.status{
-  padding:4px 10px;
-  border-radius:8px;
-  background:var(--primary);
-  color:#fff;
-  font-size:12px;
-}
-
-.status{
-  padding:4px 10px;
-  border-radius:8px;
-  font-size:12px;
-  background:var(--primary);
-  color:#fff;
-}
-
-.ordersList{
-  margin-top:20px;
-  display:grid;
-  gap:15px;
-}
-
-.status-created{
-  background:#3b82f6;
-}
-
-.status-processing{
-  background:#f59e0b;
-}
-
-.status-delivered{
-  background:#22c55e;
-}
-
-.card{
-  transition:0.2s;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }

@@ -2,7 +2,6 @@ import { PRODUCTS } from "../data.js";
 import { createOrder } from "./orders.js";
 import { updateHeaderBadges } from "../ui.js";
 import { toast } from "./toast.js";
-
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem("cart")) || {};
@@ -20,6 +19,7 @@ export function addToCart(id) {
   const cart = getCart();
   cart[id] = (cart[id] || 0) + 1;
   setCart(cart);
+  updateHeaderBadges();
   toast("Добавлено в корзину");
 }
 
@@ -28,7 +28,7 @@ export function renderCart() {
   if (!root) return;
 
   const cart = getCart();
-  const entries = Object.entries(cart);
+  const entries = Object.entries(cart); 
 
   if (entries.length === 0) {
     root.innerHTML = `
@@ -69,13 +69,33 @@ export function renderCart() {
 
     <h3>Итого: ${total} ₸</h3>
 
-    <button class="btn" id="checkoutBtn" type="button">Оформить заказ</button>
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button class="btn" id="checkoutBtn" type="button">
+        Оформить заказ
+      </button>
+
+      <button class="btn outline" id="clearCartBtn" type="button">
+        Очистить корзину
+      </button>
+    </div>
   `;
 
-  document.getElementById("checkoutBtn")?.addEventListener("click", () => {
-    createOrder({ items, total })
+  const btn = document.getElementById("checkoutBtn");
+  btn?.addEventListener("click", () => {
+    createOrder({ items, total });
+
     localStorage.removeItem("cart");
     updateHeaderBadges();
+    toast("Корзина очищена");
+    updateHeaderBadges();
     location.hash = "#orders";
+  });
+  const clearBtn = document.getElementById("clearCartBtn");
+
+  clearBtn?.addEventListener("click", () => {
+  localStorage.removeItem("cart");
+  updateHeaderBadges();
+  toast("Корзина очищена");
+  renderCart();
   });
 }
