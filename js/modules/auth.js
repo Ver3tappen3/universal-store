@@ -60,11 +60,56 @@ function redirectAfterLogin() {
 
 function renderProfile() {
   const user = getCurrentUser();
+
   const nameEl = document.getElementById("profileName");
   const emailEl = document.getElementById("profileEmail");
 
   if (nameEl) nameEl.textContent = user?.name || "—";
   if (emailEl) emailEl.textContent = user?.email || "—";
+
+  const orders = JSON.parse(localStorage.getItem("sf_orders") || "[]");
+
+  const ordersCount = orders.length;
+
+  const totalSpent = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+
+  const totalItems = orders.reduce((sum, o) => {
+    return sum + (o.items || []).reduce((s, i) => s + (i.qty || 0), 0);
+  }, 0);
+
+  let level = "Новичок";
+
+  if (totalSpent > 100000) level = "Постоянный клиент";
+  if (totalSpent > 1000000) level = "👑 VIP клиент";
+
+  const levelEl = document.getElementById("profileLevel");
+  if (levelEl) levelEl.textContent = level;
+
+  const stats = document.getElementById("profileStats");
+
+  if (stats) {
+    stats.innerHTML = `
+      <div class="statCard">
+        <h3>${ordersCount}</h3>
+        <p>Заказов</p>
+      </div>
+
+      <div class="statCard">
+        <h3>${totalSpent} ₸</h3>
+        <p>Потрачено</p>
+      </div>
+
+      <div class="statCard">
+        <h3>${totalItems}</h3>
+        <p>Товаров</p>
+      </div>
+
+      <div class="statCard">
+        <h3>${user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "-"}</h3>
+        <p>Регистрация</p>
+      </div>
+    `;
+  }
 }
 
 // --- Register ---

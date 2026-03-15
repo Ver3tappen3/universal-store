@@ -452,8 +452,61 @@ body[data-theme="alt"] .status.done { background: #e8f5e9; color: #1b5e20; }
   margin-left:4px;
 }
 
+.profileHeader{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-bottom:16px;
+}
 
+.avatar{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:white;
+}
 
+.profileLevel{
+  margin-top:6px;
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:20px;
+  background:var(--primary);
+  color:white;
+  display:inline-block;
+}
+
+.profileStats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:12px;
+  margin:18px 0;
+}
+
+.statCard{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
+}
+
+.statCard h3{
+  margin:0;
+  font-size:20px;
+  color:var(--primary);
+}
+
+.statCard p{
+  margin:4px 0 0;
+  font-size:12px;
+  opacity:.8;
+}
 
 .view { display:none; }
 .view.view--active { display:block; animation: fadeIn .22s ease; }
