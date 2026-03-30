@@ -114,7 +114,7 @@ body[data-theme="alt"]{
 }
 
 .auth{
-  display:flex;
+  display: flex;
   justify-content:center;
 }
 .auth__card{
@@ -506,6 +506,50 @@ body[data-theme="alt"] .status.done { background: #e8f5e9; color: #1b5e20; }
   margin:4px 0 0;
   font-size:12px;
   opacity:.8;
+}
+
+.aboutText{
+  max-width:700px;
+  margin-bottom:30px;
+}
+
+.aboutStats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+}
+
+.statCard{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  transition:0.2s;
+}
+
+.statCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.statIcon{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.statCard h3{
+  font-size:26px;
+  margin:5px 0;
+}
+
+.statCard p{
+  color:var(--muted);
 }
 
 .view { display:none; }
